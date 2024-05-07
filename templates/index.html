@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мероприятия в вашем городе</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Предстоящие мероприятия</h1>
+        {% for event in events %}
+            <div class="event">
+                <h2><a href="/event/{{ event.id }}">{{ event.title }}</a></h2>
+            </div>
+        {% else %}
+            <p>Мероприятия не найдены.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

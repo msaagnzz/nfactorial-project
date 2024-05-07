@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+        <p><strong>Время:</strong> {{ event.time.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p><strong>Место:</strong> {{ event.location }}</p>
+        <p><strong>Общая вместимость:</strong> {{ event.capacity }}</p>
+        <p><strong>Доступные билеты:</strong> {{ event.available_tickets }}</p>
+
+        <h3>Зарегистрироваться на мероприятие</h3>
+        <form method="POST">
+            <label for="tickets">Количество билетов:</label>
+            <input type="number" name="tickets" required>
+            <button type="submit" class="button">Купить</button>
+        </form>
+
+        <a href="/">Вернуться к списку мероприятий</a>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
